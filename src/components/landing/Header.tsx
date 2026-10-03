@@ -12,7 +12,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { sendMetaEvent } from "@/lib/meta-events";
 import { type LatamCountry } from "@/lib/latam-countries";
-import { LOGIN_URL, STORE_URL, LUXOR_URL } from "@/lib/site-links";
+import { LOGIN_URL, STORE_URL } from "@/lib/site-links";
+import { DEFAULT_SOCIAL_LINKS } from "@/lib/country-socials";
 
 // --- TIPOS DE DATOS ---
 type SubItem = {
@@ -45,10 +46,9 @@ type MenuItemData = {
 
 // --- DATA DEL MENÚ ---
 const menuData: MenuItemData[] = [
-  { label: "LUXOR", href: LUXOR_URL },
-  // TODO: definir los enlaces de Excelsior y STABLECOIN
-  { label: "EXCELSIOR", href: "#" },
-  { label: "STABLECOIN", href: "#" },
+  // TODO: definir los enlaces de NEWS y EVENTS
+  { label: "NEWS", href: "#" },
+  { label: "EVENTS", href: "#" },
 ];
 
 export default function Header() {
@@ -93,11 +93,11 @@ export default function Header() {
     <>
       {/* --- NAVBAR PRINCIPAL --- */}
       <header
-        className={`${isVisaLandingPage ? "absolute" : "fixed"} top-0 left-0 right-0 z-50 transition-all duration-300 font-sans ${!isVisaLandingPage && (isScrolled || activeMenu) ? "bg-black/90 backdrop-blur-md border-b border-white/10" : "bg-transparent border-b border-transparent"
+        className={`${isVisaLandingPage ? "absolute" : "fixed"} top-0 left-0 right-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-300 font-sans ${!isVisaLandingPage && (isScrolled || activeMenu) ? "bg-black/90 backdrop-blur-md border-b border-white/10" : "bg-transparent border-b border-transparent"
           }`}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="w-full px-4 md:px-8 lg:px-12 h-14 flex items-center justify-between relative">
+        <div className="w-full px-3 sm:px-4 md:px-8 lg:px-12 h-14 flex items-center justify-between relative">
 
           {/* GRUPO IZQUIERDA: LOGO + NAV */}
           <div className="flex items-center gap-4 lg:gap-12 h-full">
@@ -133,6 +133,23 @@ export default function Header() {
                     </Link>
                   </div>
                 ))}
+
+                {/* Redes sociales */}
+                <div className="flex items-center gap-2 ml-3 pl-4 border-l border-white/15">
+                  {DEFAULT_SOCIAL_LINKS.map((social) => (
+                    <a
+                      key={social.network}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      onClick={() => sendMetaEvent('Lead', { source: 'Header Social Icon', network: social.label })}
+                      className="transition-transform duration-300 hover:scale-110"
+                    >
+                      <img src={social.imgSrc} alt={social.label} className="w-6 h-6 rounded-md object-cover" />
+                    </a>
+                  ))}
+                </div>
               </nav>
             )}
           </div>
@@ -154,19 +171,19 @@ export default function Header() {
 
           {/* MOBILE & TABLET ACTIONS */}
           {!isVisaLandingPage && (
-            <div className="lg:hidden flex items-center gap-2 z-50">
+            <div className="lg:hidden flex items-center gap-1.5 sm:gap-2 z-50">
               <Link href={STORE_URL} className="shrink-0">
-                <Button className="bg-transparent text-white border border-white/60 hover:bg-white/10 rounded-full h-8 w-24 px-0 font-semibold text-xs transition-all duration-300 active:scale-95">
+                <Button className="bg-transparent text-white border border-white/60 hover:bg-white/10 rounded-full h-8 w-[4.5rem] sm:w-24 px-0 font-semibold text-xs transition-all duration-300 active:scale-95">
                   Tienda
                 </Button>
               </Link>
               <Link href={LOGIN_URL} className="shrink-0">
-                <Button className="bg-white text-black hover:bg-white/90 rounded-full h-8 w-24 px-0 font-semibold text-xs transition-all duration-300 active:scale-95 shadow-md">
+                <Button className="bg-white text-black hover:bg-white/90 rounded-full h-8 w-[4.5rem] sm:w-24 px-0 font-semibold text-xs transition-all duration-300 active:scale-95 shadow-md">
                   Ingresar
                 </Button>
               </Link>
               <button
-                className="text-white p-2 hover:bg-white/10 rounded-full transition-colors"
+                className="text-white p-1.5 sm:p-2 hover:bg-white/10 rounded-full transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Abrir menú de navegación"
               >
@@ -391,6 +408,25 @@ export default function Header() {
                     )}
                   </div>
                 ))}
+
+                <div>
+                  <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-gray-500 mb-4 block">Síguenos</span>
+                  <div className="grid grid-cols-3 gap-3">
+                    {DEFAULT_SOCIAL_LINKS.map((social) => (
+                      <a
+                        key={social.network}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => sendMetaEvent('Lead', { source: 'Mobile Menu Social Icon', network: social.label })}
+                        className="flex flex-col items-center gap-1.5 p-3 bg-white/5 rounded-2xl active:scale-95 transition-transform"
+                      >
+                        <img src={social.imgSrc} alt={social.label} className="w-10 h-10 rounded-xl object-cover" />
+                        <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">{social.label}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
 
                 <div className="pt-4 space-y-3">
                   <Link href={LOGIN_URL} onClick={() => setIsMobileMenuOpen(false)} className="w-full block">

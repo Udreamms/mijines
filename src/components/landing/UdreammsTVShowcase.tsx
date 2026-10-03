@@ -80,7 +80,7 @@ export default function UdreammsTVShowcase() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="relative w-full min-h-[400px] md:min-h-[550px] lg:min-h-[650px] bg-black overflow-hidden flex items-center z-10 pt-20 md:pt-28 lg:pt-32 pb-20 md:pb-28 lg:pb-32">
+        <section ref={sectionRef} className="relative w-full min-h-[400px] md:min-h-[550px] lg:min-h-[650px] bg-black overflow-hidden flex items-center z-10 pt-20 md:pt-28 lg:pt-32 pb-[calc((100vw-3rem)*9/16+8rem)] md:pb-[calc((100vw-6rem)*9/16+10rem)] lg:pb-32">
             
             {/* 1. DEGRADADO SUPERIOR (Badge sin borde y con tipografía fina font-light) */}
             <div className="absolute top-0 left-0 right-0 z-30 w-full h-24 md:h-36 lg:h-48 bg-gradient-to-b from-black via-black/95 to-transparent flex items-center justify-center pt-6 md:pt-10 pointer-events-none">
@@ -114,7 +114,7 @@ export default function UdreammsTVShowcase() {
                     // abajo) para dejar fuera de la vista el título y los controles de YouTube.
                     <div
                         aria-hidden
-                        className="absolute top-1/2 -translate-y-1/2 right-0 md:right-6 lg:right-12 w-[55%] aspect-video overflow-hidden rounded-2xl z-0"
+                        className="absolute left-6 right-6 md:left-12 md:right-12 bottom-24 md:bottom-32 aspect-video lg:left-auto lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:right-12 lg:w-[55%] overflow-hidden rounded-2xl z-0"
                     >
                         <iframe
                             src={TV_VIDEO_URL}
@@ -128,7 +128,7 @@ export default function UdreammsTVShowcase() {
                 )}
 
                 {/* DEGRADADO AÚN MÁS INTENSO Y EXTENSO EN EL LADO IZQUIERDO */}
-                <div className="absolute inset-y-0 left-0 w-full md:w-4/5 lg:w-3/4 bg-gradient-to-r from-black via-black via-55% to-transparent z-10 pointer-events-none" />
+                <div className="hidden lg:block absolute inset-y-0 left-0 lg:w-3/4 bg-gradient-to-r from-black via-black via-55% to-transparent z-10 pointer-events-none" />
             </motion.div>
 
             {/* Contenido de la Sección */}

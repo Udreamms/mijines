@@ -2,7 +2,7 @@
 
 import { sendMetaEvent } from "@/lib/meta-events";
 import { getCountrySocialLinks } from "@/lib/country-socials";
-import { LOGIN_URL } from "@/lib/site-links";
+import { LOGIN_URL, PLATFORM_URL } from "@/lib/site-links";
 
 const COUNTRY = { code: "ec", name: "Ecuador" };
 
@@ -22,8 +22,15 @@ export default function ChooseYourPath() {
             Ayúdanos a unir a todo el Ecuador con tecnología
           </h2>
           <p className="text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Creamos una plataforma para que todos los ecuatorianos puedan acceder a servicios que les permitirán vivir de
-            una manera más organizada en los Estados Unidos.
+            Firmamos un convenio con la empresa <a href="https://www.luxorintelligence.com/en" target="_blank" rel="noopener noreferrer" className="text-blue-400 font-medium hover:underline">Luxor Intelligence</a> para
+            que nuestra comunidad y todos los miembros de MIJINES en Utah puedan acceder a servicios a bajo costo. Gracias
+            a este convenio contamos con acceso a la plataforma{" "}
+            <a href={PLATFORM_URL} target="_blank" rel="noopener noreferrer" className="text-blue-400 font-medium hover:underline">POR MÍ | THE NEW TECHNOLOGICAL REPUBLIC</a>, con la que muchos
+            ecuatorianos ya han logrado avanzar en los Estados Unidos.
+            <br />
+            <br />
+            Te invitamos y te recomendamos usarla: en el enlace de abajo encontrarás todo tipo de servicios para ayudarte a
+            ti y a toda nuestra comunidad.
           </p>
         </div>
 

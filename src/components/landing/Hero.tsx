@@ -103,7 +103,7 @@ export default function Hero({ onStartQuote }: HeroProps) {
 
 
       {/* Contenido adaptado a móviles y tablets con safe-area */}
-      <div className="relative z-30 w-full pb-[calc(3rem+2cm)] sm:pb-[calc(4rem+2cm)] md:pb-[calc(6rem+2cm)] lg:pb-[5cm] px-5 sm:px-8 md:px-12 lg:px-[3cm] pt-24 sm:pt-28 safe-bottom">
+      <div className="relative z-30 w-full pb-[calc(3rem+2cm)] sm:pb-[calc(4rem+2cm)] md:pb-[calc(6rem+2cm)] lg:pb-[5cm] px-5 sm:px-8 md:px-12 lg:px-[3cm] pt-24 sm:pt-28">
         <div className="flex flex-col items-center justify-center gap-6 md:gap-8 w-full">
 
           <div className="w-full md:max-w-[80%] lg:max-w-[70%] text-center space-y-2 sm:space-y-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)]">
